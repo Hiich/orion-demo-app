@@ -19,9 +19,9 @@ export function getOverallStats(tasks: Task[]): TaskStats {
 }
 
 export function getCategoryCompletionRate(tasks: Task[], category: string): number {
-  const completed = tasks.filter(t => t.category === category && t.completed).length;
-  // BUG: denominator uses ALL tasks instead of only tasks in this category
-  const total = tasks.length;
+  const categoryTasks = tasks.filter(t => t.category === category);
+  const completed = categoryTasks.filter(t => t.completed).length;
+  const total = categoryTasks.length;
   return total === 0 ? 0 : Math.round((completed / total) * 100);
 }
 
