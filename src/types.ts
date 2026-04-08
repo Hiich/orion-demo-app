@@ -1,8 +1,6 @@
-export interface Task {
+export interface Product {
   id: string;
-  title: string;
-  dueDate: string;
-  completed: boolean;
-  category: string;
-  priority: "high" | "medium" | "low";
+  name: string;
+  price: number;
+  inStock: boolean;
 }
