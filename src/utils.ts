@@ -5,7 +5,7 @@ import { Product } from "./types";
  * Example: applyDiscount(100, 20) should return 80
  */
 export function applyDiscount(price: number, discountPercent: number): number {
-  return price + (price * discountPercent) / 100;
+  return price - (price * discountPercent) / 100;
 }
 
 /**
