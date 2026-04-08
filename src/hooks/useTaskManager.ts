@@ -17,9 +17,7 @@ export function useTaskManager(initialTasks: Task[]) {
     const updated = { ...task, completed: !task.completed };
     await simulateApi(updated);
 
-    // BUG: uses stale `tasks` from closure instead of functional updater
-    // When two toggles fire rapidly, the second overwrites the first
-    setTasks(tasks.map(t => t.id === taskId ? updated : t));
+    setTasks(prev => prev.map(t => t.id === taskId ? { ...t, completed: !t.completed } : t));
     setLoading(false);
   }, [tasks]);
 
