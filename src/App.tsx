@@ -24,18 +24,19 @@ export default function App() {
 
   return (
     <div className="presentation">
+      <div className="grain" />
 
       {/* ---- Slide 1 : Titre ---- */}
-      <div className={`slide title-slide ${current === 0 ? "active" : ""}`}>
-        <span className="label-tag">Intelligence Artificielle</span>
-        <h1>Agents IA : la nouvelle ère de l'automatisation intelligente</h1>
-        <p className="subtitle">Comment l'IA autonome transforme les organisations</p>
+      <div className={`slide title-slide ${current === 0 ? "active" : ""}`} key={`s0-${current === 0}`}>
+        <span className="anim label-tag">Intelligence Artificielle</span>
+        <h1 className="anim">Agents IA : la nouvelle ère de l'automatisation intelligente</h1>
+        <p className="anim subtitle">Comment l'IA autonome transforme les organisations</p>
       </div>
 
       {/* ---- Slide 2 : L'IA Aujourd'hui ---- */}
-      <div className={`slide ${current === 1 ? "active" : ""}`}>
-        <h2>L'IA <span className="accent">aujourd'hui</span></h2>
-        <div className="timeline">
+      <div className={`slide ${current === 1 ? "active" : ""}`} key={`s1-${current === 1}`}>
+        <h2 className="anim">L'IA <span className="accent">aujourd'hui</span></h2>
+        <div className="anim timeline">
           <div className="timeline-item">
             <span className="timeline-year">2023</span>
             <div className="timeline-dot" />
@@ -64,9 +65,9 @@ export default function App() {
       </div>
 
       {/* ---- Slide 3 : Chatbot vs Agent ---- */}
-      <div className={`slide ${current === 2 ? "active" : ""}`}>
-        <h2>Chatbot <span className="accent">vs</span> Agent</h2>
-        <div className="comparison">
+      <div className={`slide ${current === 2 ? "active" : ""}`} key={`s2-${current === 2}`}>
+        <h2 className="anim">Chatbot <span className="accent">vs</span> Agent</h2>
+        <div className="anim comparison">
           <div className="comparison-col">
             <h3>Chatbot</h3>
             <span className="col-tag passive">Passif</span>
@@ -83,9 +84,9 @@ export default function App() {
       </div>
 
       {/* ---- Slide 4 : Comment fonctionne un agent ---- */}
-      <div className={`slide ${current === 3 ? "active" : ""}`}>
-        <h2>Comment fonctionne <span className="accent">un agent</span></h2>
-        <div className="loop-container">
+      <div className={`slide ${current === 3 ? "active" : ""}`} key={`s3-${current === 3}`}>
+        <h2 className="anim">Comment fonctionne <span className="accent">un agent</span></h2>
+        <div className="anim loop-container">
           <div className="loop-step">
             <div className="step-number">Étape 1</div>
             <div className="step-label">Percevoir</div>
@@ -106,10 +107,10 @@ export default function App() {
             <div className="step-label">Vérifier</div>
           </div>
         </div>
-        <p className="slide-description">
+        <p className="anim slide-description">
           L'agent dispose d'<strong>outils concrets</strong> : lire des fichiers, appeler des APIs, écrire du code, interagir avec Jira et GitHub. Mais il est <strong>toujours contraint</strong>.
         </p>
-        <div className="constraints">
+        <div className="anim constraints">
           <span className="constraint-chip">Budget limité</span>
           <span className="constraint-chip">Permissions définies</span>
           <span className="constraint-chip">Périmètre contrôlé</span>
@@ -118,9 +119,9 @@ export default function App() {
       </div>
 
       {/* ---- Slide 5 : Cas d'usage ---- */}
-      <div className={`slide ${current === 4 ? "active" : ""}`}>
-        <h2>Les cas qui changent <span className="accent">la donne</span></h2>
-        <div className="usecases-grid">
+      <div className={`slide ${current === 4 ? "active" : ""}`} key={`s4-${current === 4}`}>
+        <h2 className="anim">Les cas qui changent <span className="accent">la donne</span></h2>
+        <div className="anim usecases-grid">
           <div className="usecase-card">
             <div className="card-category">Développement</div>
             <h3>Correction automatique</h3>
@@ -145,9 +146,9 @@ export default function App() {
       </div>
 
       {/* ---- Slide 6 : Intégration workflow ---- */}
-      <div className={`slide ${current === 5 ? "active" : ""}`}>
-        <h2>L'agent dans <span className="accent">votre quotidien</span></h2>
-        <div className="workflow-chain">
+      <div className={`slide ${current === 5 ? "active" : ""}`} key={`s5-${current === 5}`}>
+        <h2 className="anim">L'agent dans <span className="accent">votre quotidien</span></h2>
+        <div className="anim workflow-chain">
           <div className="workflow-node">
             <div className="node-label">Trigger</div>
             <div className="node-name">Jira</div>
@@ -168,24 +169,24 @@ export default function App() {
             <div className="node-name">Humain</div>
           </div>
         </div>
-        <div className="workflow-bottom">
+        <div className="anim workflow-bottom">
           <p>Pas un outil de plus. Il vit dans vos outils existants.</p>
           <p><strong>L'humain reste dans la boucle : il valide, il décide.</strong></p>
         </div>
       </div>
 
       {/* ---- Slide 7 : Démo Live ---- */}
-      <div className={`slide ${current === 6 ? "active" : ""}`}>
-        <h2>Mesurez <span className="accent">l'impact</span> pour votre équipe</h2>
-        <div className="calculator-wrapper">
+      <div className={`slide ${current === 6 ? "active" : ""}`} key={`s6-${current === 6}`}>
+        <h2 className="anim">Mesurez <span className="accent">l'impact</span> pour votre équipe</h2>
+        <div className="anim calculator-wrapper">
           <ROICalculator />
         </div>
       </div>
 
       {/* ---- Slide 8 : Ce que ça change ---- */}
-      <div className={`slide ${current === 7 ? "active" : ""}`}>
-        <h2>Ce que ça <span className="accent">change</span></h2>
-        <div className="closing-list">
+      <div className={`slide ${current === 7 ? "active" : ""}`} key={`s7-${current === 7}`}>
+        <h2 className="anim">Ce que ça <span className="accent">change</span></h2>
+        <div className="anim closing-list">
           <div className="closing-item">
             <strong>L'IA agents n'est pas une menace</strong> — c'est un levier. Les équipes se concentrent sur ce qui compte : l'architecture, le produit, l'innovation.
           </div>
@@ -196,7 +197,7 @@ export default function App() {
             L'intégration est <strong>progressive</strong> — on commence par un cas d'usage, on mesure l'impact, on élargit.
           </div>
         </div>
-        <p className="closing-quote">&laquo; La question n'est plus si, mais quand. &raquo;</p>
+        <p className="anim closing-quote">&laquo; La question n'est plus si, mais quand. &raquo;</p>
       </div>
 
       {/* Navigation */}
