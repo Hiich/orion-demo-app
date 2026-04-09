@@ -2,215 +2,215 @@ import { useState, useEffect } from "react";
 import ROICalculator from "./components/ROICalculator";
 import "./App.css";
 
-const TOTAL_SLIDES = 8;
+const N = 8;
 
 export default function App() {
-  const [current, setCurrent] = useState(0);
+  const [s, setS] = useState(0);
 
   useEffect(() => {
-    const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "ArrowRight" || e.key === " ") {
-        e.preventDefault();
-        setCurrent((c) => Math.min(c + 1, TOTAL_SLIDES - 1));
-      }
-      if (e.key === "ArrowLeft") {
-        e.preventDefault();
-        setCurrent((c) => Math.max(c - 1, 0));
-      }
+    const h = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight" || e.key === " ") { e.preventDefault(); setS(c => Math.min(c + 1, N - 1)); }
+      if (e.key === "ArrowLeft") { e.preventDefault(); setS(c => Math.max(c - 1, 0)); }
     };
-    window.addEventListener("keydown", handleKey);
-    return () => window.removeEventListener("keydown", handleKey);
+    window.addEventListener("keydown", h);
+    return () => window.removeEventListener("keydown", h);
   }, []);
 
   return (
     <div className="presentation">
-      <div className="grain" />
-
-      {/* ---- Slide 1 : Titre ---- */}
-      <div className={`slide title-slide ${current === 0 ? "active" : ""}`} key={`s0-${current === 0}`}>
-        <span className="anim label-tag">Intelligence Artificielle</span>
-        <h1 className="anim">Agents IA : la nouvelle ère de l'automatisation intelligente</h1>
-        <p className="anim subtitle">Comment l'IA autonome transforme les organisations</p>
+      <div className="bg-orbs">
+        <div className="orb orb-1" />
+        <div className="orb orb-2" />
+        <div className="orb orb-3" />
       </div>
 
-      {/* ---- Slide 2 : L'IA Aujourd'hui ---- */}
-      <div className={`slide ${current === 1 ? "active" : ""}`} key={`s1-${current === 1}`}>
-        <h2 className="anim">L'IA <span className="accent">aujourd'hui</span></h2>
-        <div className="anim timeline">
-          <div className="timeline-item">
-            <span className="timeline-year">2023</span>
-            <div className="timeline-dot" />
-            <div className="timeline-content">
+      {/* 1 — Titre */}
+      <div className={`slide ${s === 0 ? "active" : ""}`} key={`s0-${s === 0}`}>
+        <span className="a tag">Intelligence Artificielle</span>
+        <h1 className="a">
+          Agents IA : la <span className="gradient-text">nouvelle ère</span> de l'automatisation
+        </h1>
+        <p className="a sub">Comment l'IA autonome transforme les organisations</p>
+      </div>
+
+      {/* 2 — L'IA Aujourd'hui */}
+      <div className={`slide ${s === 1 ? "active" : ""}`} key={`s1-${s === 1}`}>
+        <h2 className="a">L'IA <span className="hl">aujourd'hui</span></h2>
+        <div className="a timeline">
+          <div className="tl-line" />
+          <div className="tl-item">
+            <span className="tl-year">2023</span>
+            <div className="tl-dot" />
+            <div className="tl-body">
               <p>Les LLMs arrivent. Tout le monde découvre ChatGPT.</p>
               <p><strong>L'IA comprend et génère du langage.</strong></p>
             </div>
           </div>
-          <div className="timeline-item">
-            <span className="timeline-year">2024 — 25</span>
-            <div className="timeline-dot" />
-            <div className="timeline-content">
+          <div className="tl-item">
+            <span className="tl-year">2024—25</span>
+            <div className="tl-dot" />
+            <div className="tl-body">
               <p>L'IA s'intègre dans les outils : Copilot, assistants, RAG.</p>
               <p><strong>L'IA assiste les humains dans leur travail.</strong></p>
             </div>
           </div>
-          <div className="timeline-item">
-            <span className="timeline-year">2026</span>
-            <div className="timeline-dot" />
-            <div className="timeline-content">
-              <p>Les <strong>agents autonomes</strong> émergent. L'IA ne répond plus — elle agit.</p>
-              <p><strong>On passe de l'IA qui assiste à l'IA qui exécute.</strong></p>
+          <div className="tl-item">
+            <span className="tl-year">2026</span>
+            <div className="tl-dot" />
+            <div className="tl-body">
+              <p>Les <strong>agents autonomes</strong> émergent.</p>
+              <div className="tl-big">L'IA ne répond plus — elle agit.</div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* ---- Slide 3 : Chatbot vs Agent ---- */}
-      <div className={`slide ${current === 2 ? "active" : ""}`} key={`s2-${current === 2}`}>
-        <h2 className="anim">Chatbot <span className="accent">vs</span> Agent</h2>
-        <div className="anim comparison">
-          <div className="comparison-col">
+      {/* 3 — Chatbot vs Agent */}
+      <div className={`slide ${s === 2 ? "active" : ""}`} key={`s2-${s === 2}`}>
+        <h2 className="a">Chatbot <span className="hl">vs</span> Agent</h2>
+        <div className="a vs">
+          <div className="vs-card">
             <h3>Chatbot</h3>
-            <span className="col-tag passive">Passif</span>
+            <span className="vs-tag red">Passif</span>
             <p>Vous posez une question. Il répond. Il ne fait rien d'autre. Il attend la prochaine question.</p>
-            <div className="analogy">&laquo; Un conseiller. &raquo;</div>
+            <div className="quote">&laquo; Un conseiller. &raquo;</div>
           </div>
-          <div className="comparison-col highlight">
+          <div className="vs-divider">
+            <div className="vs-badge">VS</div>
+          </div>
+          <div className="vs-card lit">
             <h3>Agent IA</h3>
-            <span className="col-tag active">Autonome</span>
+            <span className="vs-tag green">Autonome</span>
             <p>Vous lui donnez un objectif. Il planifie, utilise des outils, exécute, vérifie, et livre un résultat.</p>
-            <div className="analogy">&laquo; Un collaborateur. &raquo;</div>
+            <div className="quote">&laquo; Un collaborateur. &raquo;</div>
           </div>
         </div>
       </div>
 
-      {/* ---- Slide 4 : Comment fonctionne un agent ---- */}
-      <div className={`slide ${current === 3 ? "active" : ""}`} key={`s3-${current === 3}`}>
-        <h2 className="anim">Comment fonctionne <span className="accent">un agent</span></h2>
-        <div className="anim loop-container">
-          <div className="loop-step">
-            <div className="step-number">Étape 1</div>
-            <div className="step-label">Percevoir</div>
+      {/* 4 — Comment fonctionne un agent */}
+      <div className={`slide ${s === 3 ? "active" : ""}`} key={`s3-${s === 3}`}>
+        <h2 className="a">Comment fonctionne <span className="hl">un agent</span></h2>
+        <div className="a loop">
+          <div className="loop-card">
+            <div className="loop-num">01</div>
+            <div className="loop-label">Percevoir</div>
           </div>
-          <div className="loop-arrow">›</div>
-          <div className="loop-step">
-            <div className="step-number">Étape 2</div>
-            <div className="step-label">Réfléchir</div>
+          <div className="loop-sep">/</div>
+          <div className="loop-card">
+            <div className="loop-num">02</div>
+            <div className="loop-label">Réfléchir</div>
           </div>
-          <div className="loop-arrow">›</div>
-          <div className="loop-step">
-            <div className="step-number">Étape 3</div>
-            <div className="step-label">Agir</div>
+          <div className="loop-sep">/</div>
+          <div className="loop-card">
+            <div className="loop-num">03</div>
+            <div className="loop-label">Agir</div>
           </div>
-          <div className="loop-arrow">›</div>
-          <div className="loop-step">
-            <div className="step-number">Étape 4</div>
-            <div className="step-label">Vérifier</div>
+          <div className="loop-sep">/</div>
+          <div className="loop-card">
+            <div className="loop-num">04</div>
+            <div className="loop-label">Vérifier</div>
           </div>
         </div>
-        <p className="anim slide-description">
+        <p className="a desc">
           L'agent dispose d'<strong>outils concrets</strong> : lire des fichiers, appeler des APIs, écrire du code, interagir avec Jira et GitHub. Mais il est <strong>toujours contraint</strong>.
         </p>
-        <div className="anim constraints">
-          <span className="constraint-chip">Budget limité</span>
-          <span className="constraint-chip">Permissions définies</span>
-          <span className="constraint-chip">Périmètre contrôlé</span>
-          <span className="constraint-chip">Review humaine obligatoire</span>
+        <div className="a chips">
+          <span className="chip">Budget limité</span>
+          <span className="chip">Permissions définies</span>
+          <span className="chip">Périmètre contrôlé</span>
+          <span className="chip">Review humaine obligatoire</span>
         </div>
       </div>
 
-      {/* ---- Slide 5 : Cas d'usage ---- */}
-      <div className={`slide ${current === 4 ? "active" : ""}`} key={`s4-${current === 4}`}>
-        <h2 className="anim">Les cas qui changent <span className="accent">la donne</span></h2>
-        <div className="anim usecases-grid">
-          <div className="usecase-card">
-            <div className="card-category">Développement</div>
+      {/* 5 — Cas d'usage */}
+      <div className={`slide ${s === 4 ? "active" : ""}`} key={`s4-${s === 4}`}>
+        <h2 className="a">Les cas qui changent <span className="hl">la donne</span></h2>
+        <div className="a cases">
+          <div className="case">
+            <div className="case-cat">Développement</div>
             <h3>Correction automatique</h3>
             <p>Correction de bugs, code review, génération de tests. Le développeur se concentre sur l'architecture et le produit.</p>
           </div>
-          <div className="usecase-card">
-            <div className="card-category">Management</div>
+          <div className="case">
+            <div className="case-cat">Management</div>
             <h3>Reporting intelligent</h3>
             <p>Rapports de sprint auto-générés, dashboards temps réel. Plus de reporting manuel le lundi matin.</p>
           </div>
-          <div className="usecase-card">
-            <div className="card-category">Support</div>
+          <div className="case">
+            <div className="case-cat">Support</div>
             <h3>Résolution proactive</h3>
             <p>Triage et résolution automatique de tickets. Les équipes traitent les cas complexes, l'agent gère le reste.</p>
           </div>
-          <div className="usecase-card">
-            <div className="card-category">Opérations</div>
+          <div className="case">
+            <div className="case-cat">Opérations</div>
             <h3>Remédiation autonome</h3>
             <p>Monitoring, alerting, correction. L'agent détecte et corrige avant que l'équipe ne soit alertée.</p>
           </div>
         </div>
       </div>
 
-      {/* ---- Slide 6 : Intégration workflow ---- */}
-      <div className={`slide ${current === 5 ? "active" : ""}`} key={`s5-${current === 5}`}>
-        <h2 className="anim">L'agent dans <span className="accent">votre quotidien</span></h2>
-        <div className="anim workflow-chain">
-          <div className="workflow-node">
-            <div className="node-label">Trigger</div>
-            <div className="node-name">Jira</div>
+      {/* 6 — Workflow */}
+      <div className={`slide ${s === 5 ? "active" : ""}`} key={`s5-${s === 5}`}>
+        <h2 className="a">L'agent dans <span className="hl">votre quotidien</span></h2>
+        <div className="a flow">
+          <div className="flow-node">
+            <div className="fn-label">Trigger</div>
+            <div className="fn-name">Jira</div>
           </div>
-          <div className="workflow-arrow">›</div>
-          <div className="workflow-node">
-            <div className="node-label">Exécution</div>
-            <div className="node-name">Agent</div>
+          <div className="flow-arrow" />
+          <div className="flow-node">
+            <div className="fn-label">Exécution</div>
+            <div className="fn-name">Agent</div>
           </div>
-          <div className="workflow-arrow">›</div>
-          <div className="workflow-node">
-            <div className="node-label">Livraison</div>
-            <div className="node-name">GitHub</div>
+          <div className="flow-arrow" />
+          <div className="flow-node">
+            <div className="fn-label">Livraison</div>
+            <div className="fn-name">GitHub</div>
           </div>
-          <div className="workflow-arrow">›</div>
-          <div className="workflow-node">
-            <div className="node-label">Validation</div>
-            <div className="node-name">Humain</div>
+          <div className="flow-arrow" />
+          <div className="flow-node">
+            <div className="fn-label">Validation</div>
+            <div className="fn-name">Humain</div>
           </div>
         </div>
-        <div className="anim workflow-bottom">
+        <div className="a flow-bottom">
           <p>Pas un outil de plus. Il vit dans vos outils existants.</p>
           <p><strong>L'humain reste dans la boucle : il valide, il décide.</strong></p>
         </div>
       </div>
 
-      {/* ---- Slide 7 : Démo Live ---- */}
-      <div className={`slide ${current === 6 ? "active" : ""}`} key={`s6-${current === 6}`}>
-        <h2 className="anim">Mesurez <span className="accent">l'impact</span> pour votre équipe</h2>
-        <div className="anim calculator-wrapper">
+      {/* 7 — Calculateur */}
+      <div className={`slide ${s === 6 ? "active" : ""}`} key={`s6-${s === 6}`}>
+        <h2 className="a">Mesurez <span className="hl">l'impact</span> pour votre équipe</h2>
+        <div className="a">
           <ROICalculator />
         </div>
       </div>
 
-      {/* ---- Slide 8 : Ce que ça change ---- */}
-      <div className={`slide ${current === 7 ? "active" : ""}`} key={`s7-${current === 7}`}>
-        <h2 className="anim">Ce que ça <span className="accent">change</span></h2>
-        <div className="anim closing-list">
-          <div className="closing-item">
+      {/* 8 — Closing */}
+      <div className={`slide ${s === 7 ? "active" : ""}`} key={`s7-${s === 7}`}>
+        <h2 className="a">Ce que ça <span className="hl">change</span></h2>
+        <div className="a closing">
+          <div className="cl-item">
             <strong>L'IA agents n'est pas une menace</strong> — c'est un levier. Les équipes se concentrent sur ce qui compte : l'architecture, le produit, l'innovation.
           </div>
-          <div className="closing-item">
+          <div className="cl-item">
             Les tâches répétitives sont déléguées, <strong>pas les décisions</strong>. L'humain garde le contrôle à chaque étape.
           </div>
-          <div className="closing-item">
+          <div className="cl-item">
             L'intégration est <strong>progressive</strong> — on commence par un cas d'usage, on mesure l'impact, on élargit.
           </div>
         </div>
-        <p className="anim closing-quote">&laquo; La question n'est plus si, mais quand. &raquo;</p>
+        <p className="a cl-quote">&laquo; La question n'est plus si, mais quand. &raquo;</p>
       </div>
 
-      {/* Navigation */}
-      <div className="nav-dots">
-        {Array.from({ length: TOTAL_SLIDES }).map((_, i) => (
-          <button
-            key={i}
-            className={`nav-dot ${current === i ? "active" : ""}`}
-            onClick={() => setCurrent(i)}
-          />
+      {/* Nav */}
+      <div className="dots">
+        {Array.from({ length: N }).map((_, i) => (
+          <button key={i} className={`dot ${s === i ? "on" : ""}`} onClick={() => setS(i)} />
         ))}
       </div>
-      <div className="slide-counter">{current + 1} / {TOTAL_SLIDES}</div>
+      <div className="counter">{s + 1} / {N}</div>
     </div>
   );
 }
