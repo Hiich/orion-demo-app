@@ -179,10 +179,43 @@ export default function App() {
         </div>
       </div>
 
-      {/* 7 — Calculateur */}
+      {/* 7 — Impact + Calculateur */}
       <div className={`slide ${s === 6 ? "active" : ""}`} key={`s6-${s === 6}`}>
         <h2 className="a">Mesurez <span className="hl">l'impact</span> pour votre équipe</h2>
-        <div className="a">
+        <div className="a roi-layout">
+          <div className="roi-stats">
+            <div className="roi-stat">
+              <div className="stat-icon">T</div>
+              <div className="stat-body">
+                <div className="stat-label">Temps moyen de résolution</div>
+                <div className="stat-row">
+                  <span className="stat-before">2h</span>
+                  <span className="stat-arrow">&#8594;</span>
+                  <span className="stat-after">3 min</span>
+                </div>
+              </div>
+            </div>
+            <div className="roi-stat">
+              <div className="stat-icon">C</div>
+              <div className="stat-body">
+                <div className="stat-label">Coût moyen par tâche</div>
+                <div className="stat-row">
+                  <span className="stat-before">160 &euro;</span>
+                  <span className="stat-arrow">&#8594;</span>
+                  <span className="stat-after">0,50 &euro;</span>
+                </div>
+              </div>
+            </div>
+            <div className="roi-stat">
+              <div className="stat-icon">R</div>
+              <div className="stat-body">
+                <div className="stat-label">Retour sur investissement</div>
+                <div className="stat-row">
+                  <span className="stat-after">&gt; 95%</span>
+                </div>
+              </div>
+            </div>
+          </div>
           <ROICalculator />
         </div>
       </div>

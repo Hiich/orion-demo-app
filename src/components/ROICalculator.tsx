@@ -14,6 +14,7 @@ export default function ROICalculator() {
 
   return (
     <div className="calc">
+      <div className="calc-title">Calculez pour votre équipe</div>
       <div className="calc-grid">
         <div className="calc-field">
           <label>Tâches automatisables / mois</label>
@@ -41,7 +42,7 @@ export default function ROICalculator() {
           </div>
           <div className="r-card">
             <div className="r-val">{result.hoursFreed}h</div>
-            <div className="r-label">Temps libéré / mois</div>
+            <div className="r-label">Temps libéré</div>
           </div>
           <div className="r-card">
             <div className="r-val">{result.roiPercent}%</div>
