@@ -14,52 +14,54 @@ export default function ROICalculator() {
 
   return (
     <div className="calculator">
-      <div className="fields">
-        <label>
-          Taches automatisables / mois
+      <div className="calc-fields">
+        <div className="calc-field">
+          <label>Tâches automatisables / mois</label>
           <input
             type="number"
             value={tasks}
             onChange={(e) => setTasks(e.target.value)}
           />
-        </label>
-        <label>
-          Temps moyen par tache (h)
+        </div>
+        <div className="calc-field">
+          <label>Temps moyen par tâche (h)</label>
           <input
             type="number"
             value={time}
             onChange={(e) => setTime(e.target.value)}
           />
-        </label>
-        <label>
-          Cout horaire equipe (euros)
+        </div>
+        <div className="calc-field">
+          <label>Coût horaire équipe (euros)</label>
           <input
             type="number"
             value={rate}
             onChange={(e) => setRate(e.target.value)}
           />
-        </label>
+        </div>
       </div>
 
-      <button onClick={handleCalculate}>Calculer l'impact</button>
+      <button className="calc-btn" onClick={handleCalculate}>
+        Calculer l'impact
+      </button>
 
       {result && (
-        <div className="results">
-          <div className="result-card">
-            <div className="value">{result.monthlySavings.toLocaleString("fr-FR")} euros</div>
-            <div className="label">Economies / mois</div>
+        <div className="calc-results">
+          <div className="calc-result-card">
+            <div className="result-value">{result.monthlySavings.toLocaleString("fr-FR")} &euro;</div>
+            <div className="result-label">Économies / mois</div>
           </div>
-          <div className="result-card">
-            <div className="value">{result.hoursFreed}h</div>
-            <div className="label">Temps libere / mois</div>
+          <div className="calc-result-card">
+            <div className="result-value">{result.hoursFreed}h</div>
+            <div className="result-label">Temps libéré / mois</div>
           </div>
-          <div className="result-card">
-            <div className="value">{result.roiPercent}%</div>
-            <div className="label">ROI</div>
+          <div className="calc-result-card">
+            <div className="result-value">{result.roiPercent}%</div>
+            <div className="result-label">ROI</div>
           </div>
-          <div className="result-card">
-            <div className="value">{result.agentCost} euros</div>
-            <div className="label">Cout agent / mois</div>
+          <div className="calc-result-card">
+            <div className="result-value">{result.agentCost} &euro;</div>
+            <div className="result-label">Coût agent / mois</div>
           </div>
         </div>
       )}
