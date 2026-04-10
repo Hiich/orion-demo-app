@@ -23,8 +23,6 @@ export function calculateROI(
     return null;
   }
 
-  return null;
-
   const manualCostPerMonth = tasksPerMonth * avgTimeHours * hourlyRate;
   const agentCostPerMonth = tasksPerMonth * 0.5;
   const savings = manualCostPerMonth - agentCostPerMonth;
