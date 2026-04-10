@@ -6,6 +6,7 @@ export default function ROICalculator() {
   const [time, setTime] = useState("1.5");
   const [rate, setRate] = useState("70");
   const [result, setResult] = useState<ROIResult | null>(null);
+  const [view, setView] = useState<"monthly" | "yearly">("monthly");
 
   const handleCalculate = () => {
     const r = calculateROI(Number(tasks), Number(time), Number(rate));
@@ -35,24 +36,44 @@ export default function ROICalculator() {
       </button>
 
       {result && (
-        <div className="results">
-          <div className="r-card">
-            <div className="r-val">{result.monthlySavings.toLocaleString("fr-FR")} &euro;</div>
-            <div className="r-label">Économies / mois</div>
+        <>
+          <div className="view-toggle">
+            <button
+              className={`toggle-btn ${view === "monthly" ? "active" : ""}`}
+              onClick={() => setView("monthly")}
+            >
+              Mensuel
+            </button>
+            <button
+              className={`toggle-btn ${view === "yearly" ? "active" : ""}`}
+              onClick={() => setView("yearly")}
+            >
+              Annuel
+            </button>
           </div>
-          <div className="r-card">
-            <div className="r-val">{result.hoursFreed}h</div>
-            <div className="r-label">Temps libéré</div>
+          <div className="results">
+            <div className="r-card">
+              <div className="r-val">
+                {(view === "monthly" ? result.monthlySavings : result.yearlySavings).toLocaleString("fr-FR")} &euro;
+              </div>
+              <div className="r-label">Économies / {view === "monthly" ? "mois" : "an"}</div>
+            </div>
+            <div className="r-card">
+              <div className="r-val">{view === "monthly" ? result.hoursFreed : result.yearlyHoursFreed}h</div>
+              <div className="r-label">Temps libéré / {view === "monthly" ? "mois" : "an"}</div>
+            </div>
+            <div className="r-card">
+              <div className="r-val">{result.reductionPercent}%</div>
+              <div className="r-label">Réduction des coûts</div>
+            </div>
+            <div className="r-card">
+              <div className="r-val">
+                {(view === "monthly" ? result.agentCost : result.yearlyAgentCost).toLocaleString("fr-FR")} &euro;
+              </div>
+              <div className="r-label">Coût agent / {view === "monthly" ? "mois" : "an"}</div>
+            </div>
           </div>
-          <div className="r-card">
-            <div className="r-val">{result.roiPercent}%</div>
-            <div className="r-label">ROI</div>
-          </div>
-          <div className="r-card">
-            <div className="r-val">{result.agentCost} &euro;</div>
-            <div className="r-label">Coût agent / mois</div>
-          </div>
-        </div>
+        </>
       )}
     </div>
   );

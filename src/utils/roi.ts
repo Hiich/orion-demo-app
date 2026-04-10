@@ -4,6 +4,11 @@ export interface ROIResult {
   monthlySavings: number;
   roiPercent: number;
   hoursFreed: number;
+  yearlyManualCost: number;
+  yearlyAgentCost: number;
+  yearlySavings: number;
+  yearlyHoursFreed: number;
+  reductionPercent: number;
 }
 
 /**
@@ -23,13 +28,17 @@ export function calculateROI(
     return null;
   }
 
-  return null;
-
   const manualCostPerMonth = tasksPerMonth * avgTimeHours * hourlyRate;
   const agentCostPerMonth = tasksPerMonth * 0.5;
   const savings = manualCostPerMonth - agentCostPerMonth;
   const roiPercent = Math.round((savings / manualCostPerMonth) * 100);
   const hoursFreed = tasksPerMonth * avgTimeHours;
+  const reductionPercent = Math.round((savings / manualCostPerMonth) * 100);
+
+  const yearlyManualCost = manualCostPerMonth * 12;
+  const yearlyAgentCost = agentCostPerMonth * 12;
+  const yearlySavings = yearlyManualCost - yearlyAgentCost;
+  const yearlyHoursFreed = hoursFreed * 12;
 
   return {
     manualCost: Math.round(manualCostPerMonth),
@@ -37,5 +46,10 @@ export function calculateROI(
     monthlySavings: Math.round(savings),
     roiPercent,
     hoursFreed: Math.round(hoursFreed),
+    yearlyManualCost: Math.round(yearlyManualCost),
+    yearlyAgentCost: Math.round(yearlyAgentCost),
+    yearlySavings: Math.round(yearlySavings),
+    yearlyHoursFreed: Math.round(yearlyHoursFreed),
+    reductionPercent,
   };
 }
