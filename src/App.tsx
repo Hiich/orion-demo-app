@@ -163,7 +163,7 @@ export default function App() {
           <div className="fade-in">
             <div className="section-num">05</div>
             <div className="section-label">Int&eacute;gration</div>
-            <h2 className="section-title">L'agent dans votre quotidien</h2>
+            <h2 className="section-title">Workflow d'un bug fix automatis&eacute;</h2>
           </div>
           <div className="flow-chain fade-in stagger-1">
             {[
