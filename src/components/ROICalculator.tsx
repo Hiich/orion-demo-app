@@ -14,18 +14,18 @@ export default function ROICalculator() {
 
   return (
     <div className="calc">
-      <div className="calc-title">Calculez pour votre équipe</div>
+      <div className="calc-title">Calculez pour votre &eacute;quipe</div>
       <div className="calc-grid">
         <div className="calc-field">
-          <label>Tâches automatisables / mois</label>
+          <label>T&acirc;ches automatisables / mois</label>
           <input type="number" value={tasks} onChange={(e) => setTasks(e.target.value)} />
         </div>
         <div className="calc-field">
-          <label>Temps moyen par tâche (h)</label>
+          <label>Temps moyen par t&acirc;che (h)</label>
           <input type="number" value={time} onChange={(e) => setTime(e.target.value)} />
         </div>
         <div className="calc-field">
-          <label>Coût horaire équipe (euros)</label>
+          <label>Co&ucirc;t horaire &eacute;quipe (&euro;)</label>
           <input type="number" value={rate} onChange={(e) => setRate(e.target.value)} />
         </div>
       </div>
@@ -38,11 +38,11 @@ export default function ROICalculator() {
         <div className="results">
           <div className="r-card">
             <div className="r-val">{result.monthlySavings.toLocaleString("fr-FR")} &euro;</div>
-            <div className="r-label">Économies / mois</div>
+            <div className="r-label">&Eacute;conomies / mois</div>
           </div>
           <div className="r-card">
             <div className="r-val">{result.hoursFreed}h</div>
-            <div className="r-label">Temps libéré</div>
+            <div className="r-label">Temps lib&eacute;r&eacute;</div>
           </div>
           <div className="r-card">
             <div className="r-val">{result.roiPercent}%</div>
@@ -50,7 +50,7 @@ export default function ROICalculator() {
           </div>
           <div className="r-card">
             <div className="r-val">{result.agentCost} &euro;</div>
-            <div className="r-label">Coût agent / mois</div>
+            <div className="r-label">Co&ucirc;t agent / mois</div>
           </div>
         </div>
       )}
