@@ -11,45 +11,45 @@ export interface ROIResult {
   reductionPercent: number;
 }
 
-/**
- * Calculates the ROI of automating repetitive tasks with an AI agent.
- *
- * @param tasksPerMonth - Number of automatable tasks per month
- * @param avgTimeHours - Average time spent per task (in hours)
- * @param hourlyRate - Hourly cost of the team member (in €)
- * @returns ROI breakdown or null if inputs are invalid
- */
 export function calculateROI(
   tasksPerMonth: number,
   avgTimeHours: number,
   hourlyRate: number
 ): ROIResult | null {
+  // Validation des entrées
   if (tasksPerMonth <= 0 || avgTimeHours <= 0 || hourlyRate <= 0) {
     return null;
   }
 
-  const manualCostPerMonth = tasksPerMonth * avgTimeHours * hourlyRate;
-  const agentCostPerMonth = tasksPerMonth * 0.5;
-  const savings = manualCostPerMonth - agentCostPerMonth;
-  const roiPercent = Math.round((savings / manualCostPerMonth) * 100);
-  const hoursFreed = tasksPerMonth * avgTimeHours;
-  const reductionPercent = Math.round((savings / manualCostPerMonth) * 100);
+  // Coût fixe par tâche avec l'agent
+  const agentCostPerTask = 0.50;
 
-  const yearlyManualCost = manualCostPerMonth * 12;
-  const yearlyAgentCost = agentCostPerMonth * 12;
-  const yearlySavings = yearlyManualCost - yearlyAgentCost;
+  // Calculs mensuels
+  const manualCost = tasksPerMonth * avgTimeHours * hourlyRate;
+  const agentCost = tasksPerMonth * agentCostPerTask;
+  const monthlySavings = manualCost - agentCost;
+  const hoursFreed = tasksPerMonth * avgTimeHours;
+
+  // Calculs annuels
+  const yearlyManualCost = manualCost * 12;
+  const yearlyAgentCost = agentCost * 12;
+  const yearlySavings = monthlySavings * 12;
   const yearlyHoursFreed = hoursFreed * 12;
 
+  // Calculs des pourcentages
+  const roiPercent = manualCost > 0 ? (monthlySavings / manualCost) * 100 : 0;
+  const reductionPercent = manualCost > 0 ? (monthlySavings / manualCost) * 100 : 0;
+
   return {
-    manualCost: Math.round(manualCostPerMonth),
-    agentCost: Math.round(agentCostPerMonth),
-    monthlySavings: Math.round(savings),
+    manualCost,
+    agentCost,
+    monthlySavings,
     roiPercent,
-    hoursFreed: Math.round(hoursFreed),
-    yearlyManualCost: Math.round(yearlyManualCost),
-    yearlyAgentCost: Math.round(yearlyAgentCost),
-    yearlySavings: Math.round(yearlySavings),
-    yearlyHoursFreed: Math.round(yearlyHoursFreed),
-    reductionPercent,
+    hoursFreed,
+    yearlyManualCost,
+    yearlyAgentCost,
+    yearlySavings,
+    yearlyHoursFreed,
+    reductionPercent
   };
 }
